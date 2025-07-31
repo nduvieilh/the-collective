@@ -16,29 +16,28 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
 
   return (
     <div className={`flex ${isBot ? 'justify-start' : 'justify-end'} mb-4`}>
-      <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl backdrop-blur-sm border shadow-lg ${
+      <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-lg fade-in ${
         isBot 
-          ? 'bg-white bg-opacity-20 border-white border-opacity-30 text-white' 
+          ? 'glass-panel text-white' 
           : 'border-white border-opacity-40 text-white'
       }`}
       style={!isBot ? { 
-        backgroundColor: `${roomSettings.primaryColor}80`, // 50% opacity
-        borderColor: roomSettings.primaryColor 
+        backgroundColor: `${roomSettings.primaryColor}40`, // 25% opacity for glass effect
+        borderColor: `${roomSettings.primaryColor}80`,
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        border: '1px solid rgba(255, 255, 255, 0.2)'
       } : {}}
       >
         <div className="flex items-center justify-between mb-1">
-          <span className={`text-sm font-semibold ${
-            isBot ? 'text-white text-opacity-90' : 'text-white'
-          }`}>
+          <span className="text-sm font-semibold text-white text-shadow-medium">
             {message.sender}
           </span>
-          <span className={`text-xs ${
-            isBot ? 'text-white text-opacity-70' : 'text-white text-opacity-80'
-          }`}>
+          <span className="text-xs text-white text-opacity-80 text-shadow-light">
             {timestamp}
           </span>
         </div>
-        <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>
+        <p className="text-sm whitespace-pre-wrap leading-relaxed text-white text-shadow-light">{message.content}</p>
       </div>
     </div>
   );

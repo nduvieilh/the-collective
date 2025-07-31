@@ -48,7 +48,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
-          className="w-full px-4 py-3 bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 rounded-2xl focus:outline-none focus:ring-2 focus:bg-opacity-30 resize-none min-h-[50px] max-h-32 text-white placeholder-white placeholder-opacity-70 shadow-lg"
+          className="w-full px-4 py-3 glass-panel rounded-2xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 focus:bg-opacity-30 resize-none min-h-[50px] max-h-32 text-white placeholder-white placeholder-opacity-70 focus-ring text-shadow-light"
           disabled={isLoading || disabled}
           rows={1}
         />
@@ -56,14 +56,14 @@ export const MessageInput: React.FC<MessageInputProps> = ({
       <button
         type="submit"
         disabled={!message.trim() || isLoading || disabled}
-        className="px-6 py-3 text-white rounded-2xl hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg font-medium"
+        className="px-6 py-3 text-white rounded-2xl hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg font-medium btn-hover-lift focus-ring text-shadow-light"
         style={{
           backgroundColor: roomSettings.primaryColor
         }}
       >
         {isLoading ? (
           <div className="flex items-center space-x-2">
-            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div className="spinner"></div>
             <span>Sending...</span>
           </div>
         ) : (
