@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import type { RoomSettings as RoomSettingsType } from '../types';
+import { useRoom } from '../contexts/AppContext';
 
 interface RoomSettingsProps {
-  roomSettings: RoomSettingsType;
-  onUpdateRoomSettings: (updates: Partial<RoomSettingsType>) => void;
   onClearMessages: () => void;
 }
 
 export const RoomSettings: React.FC<RoomSettingsProps> = ({
-  roomSettings,
-  onUpdateRoomSettings,
   onClearMessages,
 }) => {
+  const { roomSettings, roomPresets, updateRoomSettings, applyRoomPreset } = useRoom();
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -47,7 +44,7 @@ export const RoomSettings: React.FC<RoomSettingsProps> = ({
               <input
                 type="text"
                 value={roomSettings.name}
-                onChange={(e) => onUpdateRoomSettings({ name: e.target.value })}
+                onChange={(e) => updateRoomSettings({ name: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -59,7 +56,7 @@ export const RoomSettings: React.FC<RoomSettingsProps> = ({
               <input
                 type="text"
                 value={roomSettings.description}
-                onChange={(e) => onUpdateRoomSettings({ description: e.target.value })}
+                onChange={(e) => updateRoomSettings({ description: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -71,7 +68,7 @@ export const RoomSettings: React.FC<RoomSettingsProps> = ({
               <input
                 type="text"
                 value={roomSettings.setting}
-                onChange={(e) => onUpdateRoomSettings({ setting: e.target.value })}
+                onChange={(e) => updateRoomSettings({ setting: e.target.value })}
                 placeholder="e.g., Medieval tavern, Corporate meeting, Cozy coffee shop..."
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
@@ -83,7 +80,7 @@ export const RoomSettings: React.FC<RoomSettingsProps> = ({
               </label>
               <textarea
                 value={roomSettings.context}
-                onChange={(e) => onUpdateRoomSettings({ context: e.target.value })}
+                onChange={(e) => updateRoomSettings({ context: e.target.value })}
                 placeholder="Additional context that influences how bots behave in this room..."
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 rows={3}
@@ -99,7 +96,7 @@ export const RoomSettings: React.FC<RoomSettingsProps> = ({
                 min="1"
                 max="10"
                 value={roomSettings.maxBots}
-                onChange={(e) => onUpdateRoomSettings({ maxBots: parseInt(e.target.value) || 1 })}
+                onChange={(e) => updateRoomSettings({ maxBots: parseInt(e.target.value) || 1 })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -116,7 +113,7 @@ export const RoomSettings: React.FC<RoomSettingsProps> = ({
               ].map((preset) => (
                 <button
                   key={preset.name}
-                  onClick={() => onUpdateRoomSettings({ 
+                  onClick={() => updateRoomSettings({ 
                     setting: preset.setting, 
                     context: preset.context 
                   })}

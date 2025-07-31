@@ -1,0 +1,44 @@
+{
+  "default": {
+    "id": "default",
+    "name": "The Collective",
+    "description": "A multi-bot chatroom where AI personalities interact",
+    "setting": "A cozy digital lounge where diverse AI personalities gather to chat",
+    "context": "This is a friendly, open environment where different AI personalities can express themselves freely while maintaining respectful conversation.",
+    "maxBots": 5
+  },
+  "presets": [
+    {
+      "id": "medieval-tavern",
+      "name": "Medieval Tavern",
+      "description": "A bustling medieval tavern with adventurers",
+      "setting": "A bustling medieval tavern with adventurers sharing tales",
+      "context": "Bots should speak in a fantasy medieval style, discussing quests, magic, and adventures.",
+      "maxBots": 5
+    },
+    {
+      "id": "corporate-meeting",
+      "name": "Corporate Meeting",
+      "description": "A professional corporate meeting room",
+      "setting": "A professional corporate meeting room",
+      "context": "Bots should maintain professional demeanor, discuss business topics, and use corporate language.",
+      "maxBots": 5
+    },
+    {
+      "id": "cozy-coffee-shop",
+      "name": "Cozy Coffee Shop",
+      "description": "A warm, inviting coffee shop",
+      "setting": "A warm, inviting coffee shop with comfortable seating",
+      "context": "Bots should be casual and friendly, discussing everyday topics over coffee.",
+      "maxBots": 5
+    },
+    {
+      "id": "sci-fi-station",
+      "name": "Sci-Fi Station",
+      "description": "A futuristic space station",
+      "setting": "A futuristic space station orbiting a distant planet",
+      "context": "Bots should discuss technology, space exploration, and futuristic concepts.",
+      "maxBots": 5
+    }
+  ]
+}
