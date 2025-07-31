@@ -23,6 +23,8 @@ export interface RoomSettings {
   setting: string; // e.g., "Medieval tavern", "Corporate meeting", etc.
   context: string; // Additional context that influences bot behavior
   maxBots: number;
+  primaryColor: string; // Hex color for theming
+  backgroundImage: string; // URL for background image
   createdAt: Date;
 }
 
