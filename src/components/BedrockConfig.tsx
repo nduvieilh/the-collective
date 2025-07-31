@@ -11,7 +11,7 @@ export const BedrockConfig: React.FC<BedrockConfigProps> = ({ onConfigured }) =>
     region: 'us-east-1',
     accessKeyId: '',
     secretAccessKey: '',
-    modelId: 'anthropic.claude-3-sonnet-20240229-v1:0',
+    modelId: 'us.anthropic.claude-sonnet-4-20250514-v1:0',
   });
   const [isConfigured, setIsConfigured] = useState(false);
   const [error, setError] = useState<string>('');
@@ -55,7 +55,7 @@ export const BedrockConfig: React.FC<BedrockConfigProps> = ({ onConfigured }) =>
       region: 'us-east-1',
       accessKeyId: '',
       secretAccessKey: '',
-      modelId: 'anthropic.claude-3-sonnet-20240229-v1:0',
+      modelId: 'us.anthropic.claude-sonnet-4-20250514-v1:0',
     });
     setIsConfigured(false);
     setError('');
@@ -101,32 +101,18 @@ export const BedrockConfig: React.FC<BedrockConfigProps> = ({ onConfigured }) =>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             AWS Region
           </label>
-          <select
-            value={config.region}
-            onChange={(e) => setConfig({ ...config, region: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="us-east-1">US East (N. Virginia)</option>
-            <option value="us-west-2">US West (Oregon)</option>
-            <option value="eu-west-1">Europe (Ireland)</option>
-            <option value="ap-southeast-1">Asia Pacific (Singapore)</option>
-            <option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
-          </select>
+          <div className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-700">
+            us-east-1 (US East - N. Virginia)
+          </div>
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Model ID
           </label>
-          <select
-            value={config.modelId}
-            onChange={(e) => setConfig({ ...config, modelId: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="anthropic.claude-3-sonnet-20240229-v1:0">Claude 3 Sonnet</option>
-            <option value="anthropic.claude-3-haiku-20240307-v1:0">Claude 3 Haiku</option>
-            <option value="anthropic.claude-3-opus-20240229-v1:0">Claude 3 Opus</option>
-          </select>
+          <div className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-700">
+            us.anthropic.claude-sonnet-4-20250514-v1:0 (Claude Sonnet 4)
+          </div>
         </div>
 
         <div>
