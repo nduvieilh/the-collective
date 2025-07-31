@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useChat } from './hooks/useChat';
+import { useRoom, useBots } from './contexts/AppContext';
 import { BedrockConfig } from './components/BedrockConfig';
 import { RoomSettings } from './components/RoomSettings';
 import { ChatMessages } from './components/ChatMessages';
@@ -10,23 +11,17 @@ function App() {
   const [isBedrockConfigured, setIsBedrockConfigured] = useState(false);
   const [showBotConfig, setShowBotConfig] = useState(false);
   
-  const {
-    messages,
-    bots,
-    roomSettings,
-    isLoading,
-    error,
-    sendMessage,
-    updateBot,
-    addBot,
-    removeBot,
-    updateRoomSettings,
-    clearMessages,
-    clearError,
-  } = useChat();
+  const { messages, isLoading, error, sendMessage, clearMessages, clearError } = useChat();
+  const { roomSettings } = useRoom();
+  const { bots, getActiveBots } = useBots();
 
   const handleBedrockConfigured = () => {
     setIsBedrockConfigured(true);
+  };
+
+  const handleSendMessage = (content: string) => {
+    const activeBots = getActiveBots();
+    sendMessage(content, activeBots, roomSettings);
   };
 
   return (
@@ -35,8 +30,6 @@ function App() {
       <div className="bg-white shadow-sm">
         <BedrockConfig onConfigured={handleBedrockConfigured} />
         <RoomSettings
-          roomSettings={roomSettings}
-          onUpdateRoomSettings={updateRoomSettings}
           onClearMessages={clearMessages}
         />
       </div>
@@ -69,7 +62,7 @@ function App() {
 
           {/* Message Input */}
           <MessageInput
-            onSendMessage={sendMessage}
+            onSendMessage={handleSendMessage}
             isLoading={isLoading}
             disabled={!isBedrockConfigured}
           />
@@ -77,12 +70,7 @@ function App() {
 
         {/* Bot Configuration Sidebar */}
         {showBotConfig && (
-          <BotConfig
-            bots={bots}
-            onUpdateBot={updateBot}
-            onAddBot={addBot}
-            onRemoveBot={removeBot}
-          />
+          <BotConfig />
         )}
       </div>
 

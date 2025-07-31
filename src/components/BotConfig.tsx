@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
-import type { BotPersona } from '../types';
+import { useBots } from '../contexts/AppContext';
 
-interface BotConfigProps {
-  bots: BotPersona[];
-  onUpdateBot: (botId: string, updates: Partial<BotPersona>) => void;
-  onAddBot: (bot: Omit<BotPersona, 'id'>) => void;
-  onRemoveBot: (botId: string) => void;
-}
-
-export const BotConfig: React.FC<BotConfigProps> = ({
-  bots,
-  onUpdateBot,
-  onAddBot,
-  onRemoveBot,
-}) => {
+export const BotConfig: React.FC = () => {
+  const { bots, botTemplates, updateBot, addBot, addBotFromTemplate, removeBot } = useBots();
   const [isAddingBot, setIsAddingBot] = useState(false);
   const [newBot, setNewBot] = useState({
     name: '',
@@ -24,7 +13,7 @@ export const BotConfig: React.FC<BotConfigProps> = ({
 
   const handleAddBot = () => {
     if (newBot.name.trim() && newBot.personality.trim()) {
-      onAddBot(newBot);
+      addBot(newBot);
       setNewBot({
         name: '',
         personality: '',
@@ -48,18 +37,18 @@ export const BotConfig: React.FC<BotConfigProps> = ({
                   <input
                     type="checkbox"
                     checked={bot.isActive}
-                    onChange={(e) => onUpdateBot(bot.id, { isActive: e.target.checked })}
+                    onChange={(e) => updateBot(bot.id, { isActive: e.target.checked })}
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                   />
                   <input
                     type="text"
                     value={bot.name}
-                    onChange={(e) => onUpdateBot(bot.id, { name: e.target.value })}
+                    onChange={(e) => updateBot(bot.id, { name: e.target.value })}
                     className="font-medium text-gray-800 bg-transparent border-none focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
                   />
                 </div>
                 <button
-                  onClick={() => onRemoveBot(bot.id)}
+                  onClick={() => removeBot(bot.id)}
                   className="text-red-500 hover:text-red-700 text-sm"
                   title="Remove bot"
                 >
@@ -74,7 +63,7 @@ export const BotConfig: React.FC<BotConfigProps> = ({
                   </label>
                   <textarea
                     value={bot.personality}
-                    onChange={(e) => onUpdateBot(bot.id, { personality: e.target.value })}
+                    onChange={(e) => updateBot(bot.id, { personality: e.target.value })}
                     className="w-full text-sm p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     rows={2}
                     placeholder="Describe the bot's personality..."
@@ -87,7 +76,7 @@ export const BotConfig: React.FC<BotConfigProps> = ({
                   </label>
                   <textarea
                     value={bot.systemPrompt}
-                    onChange={(e) => onUpdateBot(bot.id, { systemPrompt: e.target.value })}
+                    onChange={(e) => updateBot(bot.id, { systemPrompt: e.target.value })}
                     className="w-full text-sm p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                     rows={3}
                     placeholder="System instructions for the bot..."
