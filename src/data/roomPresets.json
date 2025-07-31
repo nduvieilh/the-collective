@@ -5,7 +5,9 @@
     "description": "A multi-bot chatroom where AI personalities interact",
     "setting": "A cozy digital lounge where diverse AI personalities gather to chat",
     "context": "This is a friendly, open environment where different AI personalities can express themselves freely while maintaining respectful conversation.",
-    "maxBots": 5
+    "maxBots": 5,
+    "primaryColor": "#6366f1",
+    "backgroundImage": "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80"
   },
   "presets": [
     {
@@ -14,7 +16,9 @@
       "description": "A bustling medieval tavern with adventurers",
       "setting": "A bustling medieval tavern with adventurers sharing tales",
       "context": "Bots should speak in a fantasy medieval style, discussing quests, magic, and adventures.",
-      "maxBots": 5
+      "maxBots": 5,
+      "primaryColor": "#92400e",
+      "backgroundImage": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     },
     {
       "id": "corporate-meeting",
@@ -22,7 +26,9 @@
       "description": "A professional corporate meeting room",
       "setting": "A professional corporate meeting room",
       "context": "Bots should maintain professional demeanor, discuss business topics, and use corporate language.",
-      "maxBots": 5
+      "maxBots": 5,
+      "primaryColor": "#1f2937",
+      "backgroundImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80"
     },
     {
       "id": "cozy-coffee-shop",
@@ -30,7 +36,9 @@
       "description": "A warm, inviting coffee shop",
       "setting": "A warm, inviting coffee shop with comfortable seating",
       "context": "Bots should be casual and friendly, discussing everyday topics over coffee.",
-      "maxBots": 5
+      "maxBots": 5,
+      "primaryColor": "#92400e",
+      "backgroundImage": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     },
     {
       "id": "sci-fi-station",
@@ -38,7 +46,9 @@
       "description": "A futuristic space station",
       "setting": "A futuristic space station orbiting a distant planet",
       "context": "Bots should discuss technology, space exploration, and futuristic concepts.",
-      "maxBots": 5
+      "maxBots": 5,
+      "primaryColor": "#0c4a6e",
+      "backgroundImage": "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
     }
   ]
 }

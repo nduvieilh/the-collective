@@ -11,6 +11,8 @@ interface RoomPreset {
   setting: string;
   context: string;
   maxBots: number;
+  primaryColor: string;
+  backgroundImage: string;
 }
 
 interface RoomContextType {
@@ -32,6 +34,8 @@ const createRoomSettingsFromPreset = (preset: RoomPreset): RoomSettings => ({
   setting: preset.setting,
   context: preset.context,
   maxBots: preset.maxBots,
+  primaryColor: preset.primaryColor,
+  backgroundImage: preset.backgroundImage,
   createdAt: new Date(),
 });
 

@@ -19,12 +19,12 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
   }, [messages]);
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+    <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
       {messages.length === 0 ? (
-        <div className="flex items-center justify-center h-full text-gray-500">
-          <div className="text-center">
-            <p className="text-lg mb-2">Welcome to The Collective!</p>
-            <p className="text-sm">Start a conversation with the AI bots by typing a message below.</p>
+        <div className="flex items-center justify-center h-full">
+          <div className="text-center glass-panel rounded-2xl p-8 fade-in">
+            <p className="text-xl mb-2 text-white font-semibold text-shadow-strong">Welcome to The Collective!</p>
+            <p className="text-sm text-white text-opacity-90 text-shadow-medium">Start a conversation with the AI bots by typing a message below.</p>
           </div>
         </div>
       ) : (
@@ -34,14 +34,14 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
           ))}
           {isLoading && (
             <div className="flex justify-start mb-4">
-              <div className="max-w-xs lg:max-w-md px-4 py-2 rounded-lg bg-gray-200 text-gray-800">
-                <div className="flex items-center space-x-2">
+              <div className="max-w-xs lg:max-w-md px-4 py-3 rounded-2xl glass-panel fade-in">
+                <div className="flex items-center space-x-3">
                   <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
-                  <span className="text-sm text-gray-600">Bots are thinking...</span>
+                  <span className="text-sm text-white font-medium text-shadow-light">Bots are thinking...</span>
                 </div>
               </div>
             </div>

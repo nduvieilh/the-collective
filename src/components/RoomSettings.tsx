@@ -8,7 +8,7 @@ interface RoomSettingsProps {
 export const RoomSettings: React.FC<RoomSettingsProps> = ({
   onClearMessages,
 }) => {
-  const { roomSettings, roomPresets, updateRoomSettings, applyRoomPreset } = useRoom();
+  const { roomSettings, roomPresets, updateRoomSettings, applyRoomPreset, resetToDefault } = useRoom();
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -100,10 +100,86 @@ export const RoomSettings: React.FC<RoomSettingsProps> = ({
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Primary Color
+              </label>
+              <div className="flex items-center gap-2">
+                <input
+                  type="color"
+                  value={roomSettings.primaryColor}
+                  onChange={(e) => updateRoomSettings({ primaryColor: e.target.value })}
+                  className="w-16 h-10 border border-gray-300 rounded cursor-pointer"
+                />
+                <input
+                  type="text"
+                  value={roomSettings.primaryColor}
+                  onChange={(e) => updateRoomSettings({ primaryColor: e.target.value })}
+                  placeholder="#6366f1"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Background Image URL
+              </label>
+              <input
+                type="url"
+                value={roomSettings.backgroundImage}
+                onChange={(e) => updateRoomSettings({ backgroundImage: e.target.value })}
+                placeholder="https://example.com/image.jpg"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
           </div>
 
-          <div className="mt-4 p-3 bg-blue-50 rounded-md">
-            <h3 className="text-sm font-medium text-blue-800 mb-2">Quick Settings</h3>
+          {/* Room Presets Section */}
+          <div className="mt-6 p-4 bg-blue-50 rounded-md">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-medium text-blue-800">Room Presets</h3>
+              <button
+                onClick={resetToDefault}
+                className="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+              >
+                Reset to Default
+              </button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {roomPresets.map((preset) => (
+                <div
+                  key={preset.id}
+                  className="bg-white rounded-lg border border-blue-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+                  onClick={() => applyRoomPreset(preset.id)}
+                >
+                  <div 
+                    className="h-16 bg-cover bg-center"
+                    style={{ 
+                      backgroundImage: `url(${preset.backgroundImage})`,
+                      backgroundColor: preset.primaryColor 
+                    }}
+                  />
+                  <div className="p-3">
+                    <h4 className="font-medium text-sm text-gray-800">{preset.name}</h4>
+                    <p className="text-xs text-gray-600 mt-1">{preset.description}</p>
+                    <div className="flex items-center justify-between mt-2">
+                      <span 
+                        className="w-4 h-4 rounded-full border border-gray-300"
+                        style={{ backgroundColor: preset.primaryColor }}
+                      />
+                      <span className="text-xs text-gray-500">{preset.maxBots} bots max</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Legacy Quick Settings for backward compatibility */}
+          <div className="mt-4 p-3 bg-gray-50 rounded-md">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Quick Theme Updates</h3>
             <div className="flex flex-wrap gap-2">
               {[
                 { name: 'Medieval Tavern', setting: 'A bustling medieval tavern with adventurers sharing tales', context: 'Bots should speak in a fantasy medieval style, discussing quests, magic, and adventures.' },
@@ -117,7 +193,7 @@ export const RoomSettings: React.FC<RoomSettingsProps> = ({
                     setting: preset.setting, 
                     context: preset.context 
                   })}
-                  className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="px-3 py-1 text-xs bg-gray-100 text-gray-600 rounded hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 >
                   {preset.name}
                 </button>
